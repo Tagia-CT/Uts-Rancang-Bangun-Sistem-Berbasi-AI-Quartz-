@@ -1,2 +1,74 @@
-Ini adalah Zip dari Deteksi Video.
-Gunakan Code berikut untuk menjalankanya dio VSC : python scripts\realtime.py runs\classify\train2\weights\best.pt 0
+```markdown
+# Facial Expression Recognition – YOLOv8
+
+## 1. Struktur Folder Utama
+```
+
+expr-yolo/
+│
+├── scripts/
+│   ├── auto_crop_faces.py
+│   ├── auto_split.py
+│   ├── extract_frames.py
+│   ├── realtime.py
+│   └── train_cls_safe.py
+│
+├── requirements.txt
+├── yolov8n-cls.pt
+├── yolov8n-face.pt
+└── runs/               ← tambahkan manual setelah ekstrak runs.zip
+
+````
+
+---
+
+## 2. Persiapan
+1. Pastikan Python 3.10–3.13 terpasang.  
+2. Jalankan:
+   ```bash
+   pip install -r requirements.txt
+````
+
+3. Jika error Torch/CUDA:
+
+   ```bash
+   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+   ```
+
+---
+
+## 3. Tambahkan Model Hasil Training
+
+* Unduh `runs.zip`.
+* Ekstrak dan **letakkan folder `runs/` ke dalam `expr-yolo/`**.
+  Struktur harus menjadi:
+
+  ```
+  expr-yolo\runs\classify\train2\weights\best.pt
+  ```
+
+---
+
+## 4. Jalankan Deteksi Kamera
+
+```bash
+python scripts/realtime.py runs/classify/train2/weights/best.pt 0
+```
+
+`0` = kamera internal. Ganti ke `1` jika memakai kamera eksternal.
+
+---
+
+## 5. (Opsional) Latih Ulang Model
+
+```bash
+python scripts/train_cls_safe.py
+```
+
+---
+
+## 6. Catatan
+
+* `yolov8n-face.pt` → deteksi wajah
+* `yolov8n-cls.pt` → model dasar klasifikasi
+* `best.pt` → hasil training terbaik (ada di `runs/`)
