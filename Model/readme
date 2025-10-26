@@ -1,0 +1,2 @@
+Ini adalah Zip dari Deteksi Video.
+Gunakan Code berikut untuk menjalankanya dio VSC : python scripts\realtime.py runs\classify\train2\weights\best.pt 0
